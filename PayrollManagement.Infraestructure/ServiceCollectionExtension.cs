@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PayrollManagement.Business.ModuleCostCenter.Interfaces;
+using PayrollManagement.Business.ModuleCostCenter.Services;
 using PayrollManagement.Infraestructure.Data;
 using PayrollManagement.Infraestructure.Repository;
+
 
 namespace PayrollManagement.Infraestructure
 {
@@ -19,6 +22,13 @@ namespace PayrollManagement.Infraestructure
         {
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
+            return services;
+        }
+        public static IServiceCollection AddCustomerServices(this IServiceCollection services)
+        {
+
+            services.AddTransient<ICostCenterService, CostCenterService>();
+            services.AddTransient<IWorkerService, WorkerService>();
             return services;
         }
     }
