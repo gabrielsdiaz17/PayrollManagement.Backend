@@ -8,7 +8,7 @@ using PayrollManagement.Business.ModuleWorker.ViewModels;
 
 namespace PayrollManagement.Api.Controllers
 {
-    public class WorkerController : Controller
+    public class WorkerController : ControllerBase
     {
         public IWorkerService _workerService;
         public ILogger<WorkerController> _loggger;
@@ -26,8 +26,8 @@ namespace PayrollManagement.Api.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var worker = _mapper.Map<Worker>(newWorkerVM);
-                    await _workerService.AddAsync(worker);
+                    //var worker = _mapper.Map<Worker>(newWorkerVM);
+                    //await _workerService.AddAsync(worker);
                     return Ok();
 
                 }
@@ -44,8 +44,8 @@ namespace PayrollManagement.Api.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var worker = _mapper.Map<Worker>(workerVM);
-                    await _workerService.UpdateAsync(worker);
+                    //var worker = _mapper.Map<Worker>(workerVM);
+                    //await _workerService.UpdateAsync(worker);
                     return Ok();
                 }
                 return BadRequest();
@@ -62,8 +62,8 @@ namespace PayrollManagement.Api.Controllers
         {
             try
             {
-                var worker = _workerService.GetByIdAsync(id);
-                if (worker == null)
+                //var worker = _workerService.GetByIdAsync(id);
+                //if (worker == null)
                     return NotFound("Cost center does not exist");
 
                 //await _workerService.DeleteAsync(worker);

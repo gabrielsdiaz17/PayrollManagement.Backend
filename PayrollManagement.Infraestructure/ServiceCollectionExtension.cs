@@ -27,8 +27,8 @@ namespace PayrollManagement.Infraestructure
         public static IServiceCollection AddCustomerServices(this IServiceCollection services)
         {
 
-            services.AddTransient<ICostCenterService, CostCenterService>();
-            services.AddTransient<IWorkerService, WorkerService>();
+            //services.AddTransient<ICostCenterService, CostCenterService>();
+            //services.AddTransient<IWorkerService, WorkerService>();
             return services;
         }
     }

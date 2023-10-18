@@ -6,7 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\PayrollManagement.Infraestructure\PayrollManagement.Infraestructure.csproj" />
-	</ItemGroup>
 </Project>

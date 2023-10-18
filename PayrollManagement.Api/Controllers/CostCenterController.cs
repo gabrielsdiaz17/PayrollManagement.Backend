@@ -6,7 +6,8 @@ using PayrollManagement.Business.ModuleCostCenter.ViewModels;
 
 namespace PayrollManagement.Api.Controllers
 {
-    public class CostCenterController : Controller
+    
+    public class CostCenterController : ControllerBase
     {
         private readonly ICostCenterService _costCenterService;
         private readonly ILogger <CostCenterController>_logger;
@@ -24,11 +25,13 @@ namespace PayrollManagement.Api.Controllers
         {
             try
             {
-                var costCenters = _costCenterService.GetAllAsync();
-                var costCenterViewModels = _mapper.Map<List<CostCenterViewModel>>(costCenters);
-                return Ok(costCenterViewModels);
-            }           
-            catch(Exception ex) 
+                //var costCenters = _costCenterService.GetAllAsync();
+                //var costCenterViewModels = _mapper.Map<List<CostCenterViewModel>>(costCenters);
+                //return Ok(costCenterViewModels);
+                return Ok();
+
+            }
+            catch (Exception ex) 
             {
                 return BadRequest(ex.Message);  
             }
@@ -40,13 +43,13 @@ namespace PayrollManagement.Api.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var costCenter = _mapper.Map<CostCenter>(newCostCenterVM);
-                    await _costCenterService.AddAsync(costCenter);
-                    return Ok();
+                //if (ModelState.IsValid)
+                //{
+                //    var costCenter = _mapper.Map<CostCenter>(newCostCenterVM);
+                //    await _costCenterService.AddAsync(costCenter);
+                //    return Ok();
 
-                }
+                //}
                 return BadRequest();
             }
             catch(Exception ex)
@@ -60,12 +63,12 @@ namespace PayrollManagement.Api.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var costCenter = _mapper.Map<CostCenter>(costCenterVM);
-                    await _costCenterService.UpdateAsync(costCenter);
-                    return Ok();
-                }
+                //if (ModelState.IsValid)
+                //{
+                //    var costCenter = _mapper.Map<CostCenter>(costCenterVM);
+                //    await _costCenterService.UpdateAsync(costCenter);
+                //    return Ok();
+                //}
                 return BadRequest();
             }
             catch(Exception ex)
@@ -80,8 +83,8 @@ namespace PayrollManagement.Api.Controllers
         {
             try
             {
-                var costCenter = _costCenterService.GetByIdAsync(id);
-                if (costCenter == null)
+                //var costCenter = _costCenterService.GetByIdAsync(id);
+                //if (costCenter == null)
                     return NotFound("Cost center does not exist");
                 
                 //await _costCenterService.DeleteAsync(costCenter);

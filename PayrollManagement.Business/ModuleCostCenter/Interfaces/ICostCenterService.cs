@@ -1,5 +1,5 @@
 ﻿using PayrollManagement.Business.ModuleCostCenter.Models;
-using PayrollManagement.Infraestructure.Repository;
+//using PayrollManagement.Infraestructure.Repository;
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace PayrollManagement.Business.ModuleCostCenter.Interfaces
 {
-    public interface ICostCenterService : IRepository<CostCenter>
+    public interface ICostCenterService 
+        //: IRepository<CostCenter>
     {
     }
 }
