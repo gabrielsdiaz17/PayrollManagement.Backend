@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayrollManagement.Business.ModuleUserInfo.Enums
+namespace PayrollManagement.Business.Enums
 {
     public enum IdentificationType
     {

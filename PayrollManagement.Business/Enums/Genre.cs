@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayrollManagement.Business.ModuleUserActivity.Enums
+namespace PayrollManagement.Business.Enums
 {
-    public enum TypeActivity
+    public enum Genre
     {
-        Entry,
-        Exit
+        Male,
+        Female,
+        Undefined
     }
 }

@@ -1,11 +1,7 @@
-﻿using PayrollManagement.Business.ModuleAuditable.Models;
-using PayrollManagement.Business.ModuleCity.Models;
-using PayrollManagement.Business.ModuleUser.Models;
-using PayrollManagement.Business.ModuleUserInfo.Enums;
-using PayrollManagement.Business.ModuleWorker.Models;
+﻿using PayrollManagement.Business.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PayrollManagement.Business.ModuleUserInfo.Models
+namespace PayrollManagement.Business.Models
 {
     public class UserInfo : Auditable
     {

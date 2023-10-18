@@ -1,11 +1,6 @@
-﻿using PayrollManagement.Business.ModuleAuditable.Models;
-using PayrollManagement.Business.ModuleCostCenter.Models;
-using PayrollManagement.Business.ModuleRole.Models;
-using PayrollManagement.Business.ModuleUserActivity.Models;
-using PayrollManagement.Business.ModuleUserInfo.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PayrollManagement.Business.ModuleUser.Models
+namespace PayrollManagement.Business.Models
 {
     public class User : Auditable
     {

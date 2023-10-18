@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PayrollManagement.Business.ModuleAuditable.Models
+namespace PayrollManagement.Business.Models
 {
     public class Auditable
     {
         [Key]
-        public virtual long Id { get; set; }       
+        public virtual long Id { get; set; }
         public virtual long CreatedById { get; set; }
         public virtual DateTime CreatedDate { get; set; }
         public virtual long? UpdatedById { get; set; }
