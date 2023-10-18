@@ -1,13 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PayrollManagement.Business.ModuleCity.Models;
-using PayrollManagement.Business.ModuleCompany.Models;
-using PayrollManagement.Business.ModuleCostCenter.Models;
-using PayrollManagement.Business.ModuleRegion.Models;
-using PayrollManagement.Business.ModuleRole.Models;
-using PayrollManagement.Business.ModuleUser.Models;
-using PayrollManagement.Business.ModuleUserActivity.Models;
-using PayrollManagement.Business.ModuleUserInfo.Models;
-using PayrollManagement.Business.ModuleWorker.Models;
+using PayrollManagement.Business.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

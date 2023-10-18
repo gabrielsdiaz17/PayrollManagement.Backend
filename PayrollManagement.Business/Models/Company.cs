@@ -1,17 +1,12 @@
-﻿using PayrollManagement.Business.ModuleAuditable.Models;
-using PayrollManagement.Business.ModuleCity.Models;
-using PayrollManagement.Business.ModuleCostCenter.Models;
-using PayrollManagement.Business.ModuleUser.Models;
-using PayrollManagement.Business.ModuleWorker.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayrollManagement.Business.ModuleCompany.Models
+namespace PayrollManagement.Business.Models
 {
-    public class Company:Auditable
+    public class Company : Auditable
     {
         public string Name { get; set; }
         public string Document { get; set; }

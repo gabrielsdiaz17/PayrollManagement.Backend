@@ -1,16 +1,13 @@
-﻿using PayrollManagement.Business.ModuleAuditable.Models;
-using PayrollManagement.Business.ModuleUser.Models;
-using PayrollManagement.Business.ModuleUserActivity.Enums;
-using PayrollManagement.Business.ModuleWorker.Models;
+﻿using PayrollManagement.Business.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayrollManagement.Business.ModuleUserActivity.Models
+namespace PayrollManagement.Business.Models
 {
-    public class UserActivity: Auditable
+    public class UserActivity : Auditable
     {
         public long UserId { get; set; }
         public User User { get; set; }

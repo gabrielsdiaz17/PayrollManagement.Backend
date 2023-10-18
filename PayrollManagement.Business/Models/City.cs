@@ -1,12 +1,10 @@
-﻿using PayrollManagement.Business.ModuleAuditable.Models;
-using PayrollManagement.Business.ModuleRegion.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayrollManagement.Business.ModuleCity.Models
+namespace PayrollManagement.Business.Models
 {
     public class City : Auditable
     {

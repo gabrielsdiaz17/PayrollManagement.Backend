@@ -1,16 +1,12 @@
-﻿using PayrollManagement.Business.ModuleAuditable.Models;
-using PayrollManagement.Business.ModuleCostCenter.Models;
-using PayrollManagement.Business.ModuleUserActivity.Models;
-using PayrollManagement.Business.ModuleUserInfo.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayrollManagement.Business.ModuleWorker.Models
+namespace PayrollManagement.Business.Models
 {
-    public class Worker: Auditable
+    public class Worker : Auditable
     {
         public long CostCenterId { get; set; }
         public CostCenter CostCenter { get; set; }
