@@ -1,3 +1,4 @@
+using PayrollManagement.Api;
 using PayrollManagement.Infraestructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCustomaizedDataStore(configuration);
 builder.Services.AddCustomizedRepository();
+builder.Services.AddCustomizedServices();
 
 var app = builder.Build();
 

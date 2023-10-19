@@ -18,7 +18,6 @@ namespace PayrollManagement.Infraestructure
         public static IServiceCollection AddCustomizedRepository(this IServiceCollection services)
         {
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-
             return services;
         }
     }
