@@ -45,13 +45,8 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             try 
             {
                 var query = await _workerService.GetAllAsync();
-                var items = query.Select(x => new WorkerViewModel
-                {
-                    Id = x.Id,
-                    UserInfoId = x.UserInfoId,
-                    UserInfo = x.UserInfo
-                });
-                return Ok(items);
+                var workers = _mapper.Map<List<WorkerViewModel>>(query);
+                return Ok(workers);
 
             }
             catch(Exception ex) 
@@ -84,11 +79,11 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
         {
             try
             {
-                var worker = _workerService.GetByIdAsync(id);
+                var worker = await _workerService.GetByIdAsync(id);
                 if (worker == null)
-                    return NotFound("Cost center does not exist");
+                    return NotFound("Worker does not exist");
 
-                //await _workerService.DeleteAsync(worker);
+                await _workerService.DeleteAsync(worker);
                 return Accepted();
 
             }
@@ -96,6 +91,21 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             {
                 return StatusCode(500, new { message = ex.Message.ToString() });
             }
+        }
+        [HttpGet("workerByCostCenter/{id}")]
+        public async Task<IActionResult> WorkerByCostCenter(int costCenterId)
+        {
+            try
+            {
+                var query = await _workerService.GetAllAsync();
+                var workers = query.Where(worker => worker.CostCenterId == costCenterId).ToList();
+                return Ok(workers);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, new {message = ex.Message.ToString() });
+            }
+
         }
     }
 }
