@@ -73,7 +73,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             }
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
 
         public async Task<IActionResult> Delete(int id)
         {
@@ -82,8 +82,9 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
                 var worker = await _workerService.GetByIdAsync(id);
                 if (worker == null)
                     return NotFound("Worker does not exist");
-
-                await _workerService.DeleteAsync(worker);
+                worker.IsDeleted = true;
+                //Pending to see user that updates if its by jwt and identity
+                await _workerService.UpdateAsync(worker);
                 return Accepted();
 
             }
@@ -93,12 +94,12 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             }
         }
         [HttpGet("workerByCostCenter/{id}")]
-        public async Task<IActionResult> WorkerByCostCenter(int costCenterId)
+        public async Task<IActionResult> WorkerByCostCenter(int id)
         {
             try
             {
                 var query = await _workerService.GetAllAsync();
-                var workers = query.Where(worker => worker.CostCenterId == costCenterId).ToList();
+                var workers = query.Where(worker => worker.CostCenterId == id).ToList();
                 return Ok(workers);
             }
             catch(Exception ex)

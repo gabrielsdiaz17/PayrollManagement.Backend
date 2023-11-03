@@ -69,7 +69,7 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
                 return StatusCode(500, new { message = ex.Message.ToString() });
             }
         }
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task <IActionResult> Delete(int id)
         {
             try
@@ -78,7 +78,9 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
                 
                 if (costCenter == null)
                     return NotFound("Cost Center does not exist");
-                await _costCenterService.DeleteAsync(costCenter);
+                costCenter.IsDeleted = true;
+                //Pending to see user that updates if its by jwt and identity
+                await _costCenterService.UpdateAsync(costCenter);
                 return Accepted();
             }
             catch(Exception ex)
