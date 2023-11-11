@@ -43,7 +43,7 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
             try
             {
                 var query = await _costCenterService.GetAllAsync();
-                var costCenters = _mapper.Map<List<CostCenter>>(query);
+                var costCenters = _mapper.Map<List<CostCenterViewModel>>(query);
                 return Ok(costCenters);
             }
             catch(Exception ex)

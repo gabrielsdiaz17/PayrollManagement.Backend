@@ -2,13 +2,18 @@
 
 namespace PayrollManagement.Api.ModuleWorker.ViewModels
 {
-    public class WorkerViewModel
+    public class WorkerViewModel:Auditable
     {
-        public long Id { get; set; }
         public long CostCenterId { get; set; }
-        public CostCenter CostCenter { get; set; }
+
+    }
+    public class WorkerCreateViewModel: WorkerViewModel
+    {
         public long UserInfoId { get; set; }
+        public long CompanyId { get; set; }
+    }
+    public class WorkerQueryViewModel:WorkerViewModel
+    {
         public UserInfo UserInfo { get; set; }
-        public virtual IList<UserActivity> UserActivities { get; set; }
     }
 }

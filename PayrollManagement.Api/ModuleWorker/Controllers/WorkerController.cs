@@ -21,7 +21,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] WorkerViewModel newWorkerVM)
+        public async Task<IActionResult> Create([FromBody] WorkerCreateViewModel newWorkerVM)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             try 
             {
                 var query = await _workerService.GetAllAsync();
-                var workers = _mapper.Map<List<WorkerViewModel>>(query);
+                var workers = _mapper.Map<List<WorkerQueryViewModel>>(query);
                 return Ok(workers);
 
             }
@@ -55,7 +55,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             }
         }
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] WorkerViewModel workerVM)
+        public async Task<IActionResult> Update([FromBody] WorkerCreateViewModel workerVM)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             try
             {
                 var query = await _workerService.GetAllAsync();
-                var workers = query.Where(worker => worker.CostCenterId == id).ToList();
+                var workers = query.Where(worker => worker.CostCenterId == id).ToList();                
                 return Ok(workers);
             }
             catch(Exception ex)
