@@ -54,6 +54,22 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
                 return StatusCode(500, new { message = ex.Message.ToString() });
             }
         }
+        [HttpGet("workerById/{id}")]
+
+        public async Task<IActionResult> WorkerById(int id)
+        {
+            try
+            {
+                var query = await _workerService.GetByIdAsync(id);
+                var worker = _mapper.Map<WorkerQueryViewModel>(query);
+                return Ok(worker);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message.ToString() });
+            }
+        }
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] WorkerCreateViewModel workerVM)
         {
@@ -94,13 +110,15 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             }
         }
         [HttpGet("workerByCostCenter/{id}")]
-        public async Task<IActionResult> WorkerByCostCenter(int id)
+        public async Task<IActionResult> WorkerByCostCenter(long id)
         {
             try
             {
                 var query = await _workerService.GetAllAsync();
-                var workers = query.Where(worker => worker.CostCenterId == id).ToList();                
-                return Ok(workers);
+                var workers = query.Where(worker => worker.CostCenterId == id).ToList(); 
+                if (workers.Any())
+                    return Ok(workers);
+                return NotFound();
             }
             catch(Exception ex)
             {
