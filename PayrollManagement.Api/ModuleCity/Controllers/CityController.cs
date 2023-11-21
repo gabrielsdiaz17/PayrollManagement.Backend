@@ -44,8 +44,8 @@ namespace PayrollManagement.Api.ModuleCity.Controllers
         {
             try
             {
-                var query = _cityService.GetAllAsync();
-                var cities = _mapper.Map<List<City>>(query);
+                var query = await _cityService.GetAllAsync();
+                var cities = _mapper.Map<List<CityViewModel>>(query);
                 return Ok(cities);
             }
             catch (Exception ex)

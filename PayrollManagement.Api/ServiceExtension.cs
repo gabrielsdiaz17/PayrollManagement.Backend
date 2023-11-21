@@ -15,6 +15,7 @@ using PayrollManagement.Api.ModuleUserInfo.Service;
 using PayrollManagement.Api.ModuleWorker.Interfaces;
 using PayrollManagement.Api.ModuleWorker.Services;
 using AutoMapper;
+using PayrollManagement.Api.Profiles;
 
 namespace PayrollManagement.Api
 {
@@ -31,7 +32,10 @@ namespace PayrollManagement.Api
             services.AddTransient<IRegionService,RegionService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IUserInfoService, UserInfoService>();
+            //Mapping
             services.AddAutoMapper(typeof(ServiceExtension));
+            services.AddAutoMapper(typeof(CityMappingProfile));
+            
 
             return services;
         }
