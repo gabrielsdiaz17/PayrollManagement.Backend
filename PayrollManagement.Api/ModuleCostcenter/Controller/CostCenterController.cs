@@ -80,6 +80,7 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
                 
                 if (costCenter == null)
                     return NotFound("Cost Center does not exist");
+                costCenter.IsActive = false;
                 costCenter.IsDeleted = true;
                 //Pending to see user that updates if its by jwt and identity
                 await _costCenterService.UpdateAsync(costCenter);

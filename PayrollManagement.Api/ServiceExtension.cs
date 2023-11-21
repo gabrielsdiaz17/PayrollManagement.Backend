@@ -1,11 +1,20 @@
-﻿using PayrollManagement.Api.ModuleCompany.Interfaces;
+﻿using PayrollManagement.Api.ModuleCity.Interfaces;
+using PayrollManagement.Api.ModuleCity.Services;
+using PayrollManagement.Api.ModuleCompany.Interfaces;
 using PayrollManagement.Api.ModuleCompany.Services;
 using PayrollManagement.Api.ModuleCostcenter.Interfaces;
 using PayrollManagement.Api.ModuleCostcenter.Services;
+using PayrollManagement.Api.ModuleRegion.Interfaces;
+using PayrollManagement.Api.ModuleRegion.Services;
+using PayrollManagement.Api.ModuleRole.Interfaces;
+using PayrollManagement.Api.ModuleRole.Services;
 using PayrollManagement.Api.ModuleUserActivity.Interfaces;
 using PayrollManagement.Api.ModuleUserActivity.Services;
+using PayrollManagement.Api.ModuleUserInfo.Interface;
+using PayrollManagement.Api.ModuleUserInfo.Service;
 using PayrollManagement.Api.ModuleWorker.Interfaces;
 using PayrollManagement.Api.ModuleWorker.Services;
+using AutoMapper;
 
 namespace PayrollManagement.Api
 {
@@ -17,6 +26,13 @@ namespace PayrollManagement.Api
             services.AddTransient<ICostCenterService, CostCenterService>();
             services.AddTransient<IUserActivityService, UserActivityService>();
             services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<ICompanyService,CompanyService>();
+            services.AddTransient<IRegionService,RegionService>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IUserInfoService, UserInfoService>();
+            services.AddAutoMapper(typeof(ServiceExtension));
+
             return services;
         }
     }

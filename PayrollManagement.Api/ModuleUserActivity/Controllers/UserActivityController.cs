@@ -46,7 +46,7 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
             {
                 var query = await _userActivityService.GetAllAsync();   
                 var usersActivity = _mapper.Map<List<UserActivityViewModel>>(query);
-                return Ok(usersActivity);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -78,6 +78,7 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
                 {
                     var userActivity = _mapper.Map<UserActivity>(userActivityUpdate);
                     await _userActivityService.UpdateAsync(userActivity);
+                    return Ok();
                 }
                 return BadRequest();
             }
@@ -92,7 +93,10 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
             try
             {
                 var userActivity = await _userActivityService.GetByIdAsync(id);
+                if (userActivity == null)
+                    return NotFound("UserActivity not found");
                 userActivity.IsActive = false;
+                userActivity.IsDeleted = true;
                 await _userActivityService.UpdateAsync(userActivity);
                 return Accepted();
             }

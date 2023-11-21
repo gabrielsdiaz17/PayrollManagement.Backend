@@ -25,9 +25,14 @@ namespace PayrollManagement.Api.ModuleCompany.Controller
         {
             try
             {
-                var company = _mapper.Map<Company>(newCompany);
-                await _companyService.AddAsync(company);
-                return Ok();
+                if(ModelState.IsValid)
+                {
+                    var company = _mapper.Map<Company>(newCompany);
+                    await _companyService.AddAsync(company);
+                    return Ok();
+                }
+                return BadRequest();
+                
             }
             catch(Exception ex)
             {
@@ -72,7 +77,10 @@ namespace PayrollManagement.Api.ModuleCompany.Controller
             try
             {
                 var company = await _companyService.GetByIdAsync(id);
+                if (company == null)
+                    return NotFound("Company does not exist");
                 company.IsActive = false;
+                company.IsDeleted = true;
                 await _companyService.UpdateAsync(company);
                 return Ok();
             }
