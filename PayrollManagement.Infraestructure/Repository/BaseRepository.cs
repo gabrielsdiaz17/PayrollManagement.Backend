@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PayrollManagement.Infraestructure.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,16 @@ namespace PayrollManagement.Infraestructure.Repository
     public class BaseRepository<T> : IRepository<T> where T : class
     {
         private readonly IRepository<T> _repository;
+        protected readonly AppDbContext _dbContext;
 
         public BaseRepository(IRepository<T> repository)
         {
             _repository = repository;
+        }
+
+        public BaseRepository(AppDbContext dbContext)
+        {
+            _dbContext = dbContext;
         }
 
         public async Task<IList<T>> GetAllAsync() => await _repository.GetAllAsync();

@@ -46,7 +46,7 @@ namespace PayrollManagement.Api.ModuleUserInfo.Controllers
             try
             {
                 var query = await _userInfoService.GetAllAsync();
-                var userInfoList = _mapper.Map<List<UserInfo>>(query);
+                var userInfoList = _mapper.Map<List<UserInfoViewModel>>(query);
                 return Ok(userInfoList);
             }
             catch (Exception ex) 

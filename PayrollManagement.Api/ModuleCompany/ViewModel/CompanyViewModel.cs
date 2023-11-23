@@ -10,6 +10,7 @@ namespace PayrollManagement.Api.ModuleCompany.ViewModel
 
     }
     public class CompanySearchViewModel: CompanyViewModel
-    {        public City City { get; set; }
+    { 
+        public City City { get; set; }
     }
 }

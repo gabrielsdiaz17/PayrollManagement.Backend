@@ -21,7 +21,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] WorkerCreateViewModel newWorkerVM)
+        public async Task<IActionResult> Create([FromBody] WorkerViewModel newWorkerVM)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
             }
         }
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] WorkerCreateViewModel workerVM)
+        public async Task<IActionResult> Update([FromBody] WorkerViewModel workerVM)
         {
             try
             {
