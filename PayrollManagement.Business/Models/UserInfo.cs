@@ -5,7 +5,8 @@ namespace PayrollManagement.Business.Models
 {
     public class UserInfo : Auditable
     {
-        public long UserId { get; set; }
+        [ForeignKey("User")]
+        public long? UserId { get; set; }
         public User User { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -20,7 +21,7 @@ namespace PayrollManagement.Business.Models
         public long CityId { get; set; }
         public City City { get; set; }
 
-        [ForeignKey("Worker")]
+        //[ForeignKey("Worker")]
         public long? WorkerId { get; set; }
         public Worker Worker { get; set; }
     }

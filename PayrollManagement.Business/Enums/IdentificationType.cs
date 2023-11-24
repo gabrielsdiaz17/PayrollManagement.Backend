@@ -8,9 +8,9 @@ namespace PayrollManagement.Business.Enums
 {
     public enum IdentificationType
     {
-        CC,
-        CE,
-        PS,
-        CD
+        CC=1,
+        CE=2,
+        PS=3,
+        CD=4
     }
 }

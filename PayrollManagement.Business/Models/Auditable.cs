@@ -10,7 +10,7 @@ namespace PayrollManagement.Business.Models
         public virtual DateTime CreatedDate { get; set; }
         public virtual long? UpdatedById { get; set; }
         public virtual DateTime? LastModifiedDate { get; set; }
-        public virtual bool IsDeleted { get; set; }
-        public virtual bool IsActive { get; set; }
+        public virtual bool IsDeleted { get; set; } = false;
+        public virtual bool IsActive { get; set; } = true;
     }
 }

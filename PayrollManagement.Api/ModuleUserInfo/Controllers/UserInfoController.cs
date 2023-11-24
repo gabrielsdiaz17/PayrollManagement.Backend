@@ -31,7 +31,7 @@ namespace PayrollManagement.Api.ModuleUserInfo.Controllers
                 {
                     var userInfo = _mapper.Map<UserInfo>(newUserInfo);
                     await _userInfoService.AddAsync(userInfo);
-
+                    return Ok();
                 }
                 return BadRequest();
             }

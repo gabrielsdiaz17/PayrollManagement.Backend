@@ -4,6 +4,7 @@ using PayrollManagement.Api.ModuleCompany.ViewModel;
 using PayrollManagement.Api.ModuleCostcenter.ViewModel;
 using PayrollManagement.Api.ModuleRole.ViewModel;
 using PayrollManagement.Api.ModuleUser.ViewModel;
+using PayrollManagement.Api.ModuleUserActivity.ViewModel;
 using PayrollManagement.Api.ModuleUserInfo.Services;
 using PayrollManagement.Api.ModuleWorker.ViewModels;
 using PayrollManagement.Business.Models;
@@ -68,4 +69,12 @@ namespace PayrollManagement.Api.Profiles
             CreateMap<Worker, WorkerViewModel>().ReverseMap();
         }
     }
+    public class UserActivityMappingProfile : Profile
+    {
+        public UserActivityMappingProfile()
+        {
+            CreateMap<UserActivity, UserActivityViewModel>().ReverseMap();
+        }
+    }
+
 }
