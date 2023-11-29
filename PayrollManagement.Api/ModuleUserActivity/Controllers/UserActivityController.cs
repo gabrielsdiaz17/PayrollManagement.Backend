@@ -46,7 +46,7 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
             {
                 var query = await _userActivityService.GetAllAsync();   
                 var usersActivity = _mapper.Map<List<UserActivityViewModel>>(query);
-                return Ok();
+                return Ok(usersActivity);
             }
             catch (Exception ex)
             {

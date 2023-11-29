@@ -31,6 +31,22 @@ namespace PayrollManagement.Infraestructure.Data
             //Al crear modelo crear relaciones
 
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<CostCenter>()
+                .HasOne(c => c.User)
+                .WithOne(u => u.CostCenter)
+                .HasForeignKey<User>(u => u.CostCenterId)
+                .IsRequired(false);
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.UserInfo)
+                .WithOne(us => us.User)
+                .HasForeignKey<UserInfo>(u => u.UserId)
+                .IsRequired(false);
+            modelBuilder.Entity<Worker>()
+                .HasOne(w => w.UserInfo)
+                .WithOne(us => us.Worker)
+                .HasForeignKey<UserInfo>(u => u.WorkerId)
+                .IsRequired(false); 
+               
         }
 
 

@@ -69,6 +69,14 @@ namespace PayrollManagement.Api.Profiles
             CreateMap<Worker, WorkerViewModel>().ReverseMap();
         }
     }
+    public class WorkerUserInfoMappingProfile : Profile
+    {
+        public WorkerUserInfoMappingProfile()
+        {
+            CreateMap<Worker, WorkerQueryViewModel>()
+                .ForMember(dest => dest.UserInfo, opt => opt.MapFrom(src => src.UserInfo));
+        }
+    }
     public class UserActivityMappingProfile : Profile
     {
         public UserActivityMappingProfile()

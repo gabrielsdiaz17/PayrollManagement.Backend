@@ -11,7 +11,7 @@ namespace PayrollManagement.Business.Models
     {
         public long? CostCenterId { get; set; }
         public CostCenter CostCenter { get; set; }
-        [ForeignKey("UserInfo")]
+        //[ForeignKey("UserInfo")]
 
         public long? UserInfoId { get; set; }
         public UserInfo UserInfo { get; set; }

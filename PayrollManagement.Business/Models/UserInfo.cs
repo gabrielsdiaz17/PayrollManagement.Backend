@@ -5,7 +5,7 @@ namespace PayrollManagement.Business.Models
 {
     public class UserInfo : Auditable
     {
-        [ForeignKey("User")]
+        //[ForeignKey("User")]
         public long? UserId { get; set; }
         public User User { get; set; }
         public string Name { get; set; }

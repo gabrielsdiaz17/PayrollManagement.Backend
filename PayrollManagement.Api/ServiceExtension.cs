@@ -46,6 +46,7 @@ namespace PayrollManagement.Api
             services.AddAutoMapper(typeof(UserInfoMappingProfile));
             services.AddAutoMapper(typeof(WorkerMappingProfile));
             services.AddAutoMapper(typeof(UserActivityMappingProfile));
+            services.AddAutoMapper(typeof(WorkerUserInfoMappingProfile));
 
 
 
