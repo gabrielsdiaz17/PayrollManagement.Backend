@@ -8,7 +8,7 @@ namespace PayrollManagement.Business.Enums
 {
     public enum TypeActivity
     {
-        Entry,
-        Exit
+        Entry = 1,
+        Exit = 2,
     }
 }

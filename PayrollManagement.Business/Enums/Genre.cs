@@ -8,8 +8,8 @@ namespace PayrollManagement.Business.Enums
 {
     public enum Genre
     {
-        Male,
-        Female,
-        Undefined
+        Male = 1,
+        Female =2,
+        Undefined =0
     }
 }

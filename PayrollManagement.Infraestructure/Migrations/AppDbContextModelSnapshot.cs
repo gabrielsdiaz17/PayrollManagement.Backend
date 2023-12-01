@@ -22,7 +22,7 @@ namespace PayrollManagement.Infraestructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleCity.Models.City", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.City", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.ToTable("City");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleCompany.Models.Company", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Company", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,7 +110,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.ToTable("Company");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleCostCenter.Models.CostCenter", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.CostCenter", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,7 +118,7 @@ namespace PayrollManagement.Infraestructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("CompanyId")
+                    b.Property<long>("CompanyId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("CreatedById")
@@ -143,7 +143,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.Property<long?>("UpdatedById")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UserId")
+                    b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -153,7 +153,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.ToTable("CostCenter");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleRegion.Models.Region", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Region", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -192,7 +192,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.ToTable("Region");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleRole.Models.Role", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Role", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -227,7 +227,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleUser.Models.User", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -235,7 +235,7 @@ namespace PayrollManagement.Infraestructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("CompanyId")
+                    b.Property<long>("CompanyId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("CostCenterId")
@@ -270,7 +270,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.Property<long?>("UpdatedById")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UserInfoId")
+                    b.Property<long?>("UserInfoId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -282,13 +282,10 @@ namespace PayrollManagement.Infraestructure.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("UserInfoId")
-                        .IsUnique();
-
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleUserActivity.Models.UserActivity", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.UserActivity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -339,7 +336,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.ToTable("UserActivity");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleUserInfo.Models.UserInfo", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.UserInfo", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -403,7 +400,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("UserId")
+                    b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("WorkerId")
@@ -413,13 +410,16 @@ namespace PayrollManagement.Infraestructure.Migrations
 
                     b.HasIndex("CityId");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.HasIndex("WorkerId")
                         .IsUnique();
 
                     b.ToTable("UserInfo");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleWorker.Models.Worker", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Worker", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -427,10 +427,10 @@ namespace PayrollManagement.Infraestructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("CompanyId")
+                    b.Property<long>("CompanyId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("CostCenterId")
+                    b.Property<long?>("CostCenterId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("CreatedById")
@@ -451,7 +451,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.Property<long?>("UpdatedById")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UserInfoId")
+                    b.Property<long?>("UserInfoId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -463,9 +463,9 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.ToTable("Worker");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleCity.Models.City", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.City", b =>
                 {
-                    b.HasOne("PayrollManagement.Business.ModuleRegion.Models.Region", "Region")
+                    b.HasOne("PayrollManagement.Business.Models.Region", "Region")
                         .WithMany()
                         .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -474,9 +474,9 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.Navigation("Region");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleCompany.Models.Company", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Company", b =>
                 {
-                    b.HasOne("PayrollManagement.Business.ModuleCity.Models.City", "City")
+                    b.HasOne("PayrollManagement.Business.Models.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -485,51 +485,51 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleCostCenter.Models.CostCenter", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.CostCenter", b =>
                 {
-                    b.HasOne("PayrollManagement.Business.ModuleCompany.Models.Company", null)
+                    b.HasOne("PayrollManagement.Business.Models.Company", "Company")
                         .WithMany("CostCenters")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleUser.Models.User", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.User", b =>
                 {
-                    b.HasOne("PayrollManagement.Business.ModuleCompany.Models.Company", null)
+                    b.HasOne("PayrollManagement.Business.Models.Company", "Company")
                         .WithMany("Users")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("PayrollManagement.Business.ModuleCostCenter.Models.CostCenter", "CostCenter")
+                    b.HasOne("PayrollManagement.Business.Models.CostCenter", "CostCenter")
                         .WithOne("User")
-                        .HasForeignKey("PayrollManagement.Business.ModuleUser.Models.User", "CostCenterId");
+                        .HasForeignKey("PayrollManagement.Business.Models.User", "CostCenterId");
 
-                    b.HasOne("PayrollManagement.Business.ModuleRole.Models.Role", "Role")
+                    b.HasOne("PayrollManagement.Business.Models.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PayrollManagement.Business.ModuleUserInfo.Models.UserInfo", "UserInfo")
-                        .WithOne("User")
-                        .HasForeignKey("PayrollManagement.Business.ModuleUser.Models.User", "UserInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Company");
 
                     b.Navigation("CostCenter");
 
                     b.Navigation("Role");
-
-                    b.Navigation("UserInfo");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleUserActivity.Models.UserActivity", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.UserActivity", b =>
                 {
-                    b.HasOne("PayrollManagement.Business.ModuleUser.Models.User", "User")
+                    b.HasOne("PayrollManagement.Business.Models.User", "User")
                         .WithMany("UserActivities")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PayrollManagement.Business.ModuleWorker.Models.Worker", "Worker")
+                    b.HasOne("PayrollManagement.Business.Models.Worker", "Worker")
                         .WithMany("UserActivities")
                         .HasForeignKey("WorkerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -540,39 +540,47 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.Navigation("Worker");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleUserInfo.Models.UserInfo", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.UserInfo", b =>
                 {
-                    b.HasOne("PayrollManagement.Business.ModuleCity.Models.City", "City")
+                    b.HasOne("PayrollManagement.Business.Models.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PayrollManagement.Business.ModuleWorker.Models.Worker", "Worker")
+                    b.HasOne("PayrollManagement.Business.Models.User", "User")
                         .WithOne("UserInfo")
-                        .HasForeignKey("PayrollManagement.Business.ModuleUserInfo.Models.UserInfo", "WorkerId");
+                        .HasForeignKey("PayrollManagement.Business.Models.UserInfo", "UserId");
+
+                    b.HasOne("PayrollManagement.Business.Models.Worker", "Worker")
+                        .WithOne("UserInfo")
+                        .HasForeignKey("PayrollManagement.Business.Models.UserInfo", "WorkerId");
 
                     b.Navigation("City");
+
+                    b.Navigation("User");
 
                     b.Navigation("Worker");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleWorker.Models.Worker", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Worker", b =>
                 {
-                    b.HasOne("PayrollManagement.Business.ModuleCompany.Models.Company", null)
+                    b.HasOne("PayrollManagement.Business.Models.Company", "Company")
                         .WithMany("Workers")
-                        .HasForeignKey("CompanyId");
-
-                    b.HasOne("PayrollManagement.Business.ModuleCostCenter.Models.CostCenter", "CostCenter")
-                        .WithMany("Workers")
-                        .HasForeignKey("CostCenterId")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PayrollManagement.Business.Models.CostCenter", "CostCenter")
+                        .WithMany("Workers")
+                        .HasForeignKey("CostCenterId");
+
+                    b.Navigation("Company");
 
                     b.Navigation("CostCenter");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleCompany.Models.Company", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Company", b =>
                 {
                     b.Navigation("CostCenters");
 
@@ -581,7 +589,7 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.Navigation("Workers");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleCostCenter.Models.CostCenter", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.CostCenter", b =>
                 {
                     b.Navigation("User")
                         .IsRequired();
@@ -589,23 +597,20 @@ namespace PayrollManagement.Infraestructure.Migrations
                     b.Navigation("Workers");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleRole.Models.Role", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Role", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleUser.Models.User", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.User", b =>
                 {
                     b.Navigation("UserActivities");
-                });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleUserInfo.Models.UserInfo", b =>
-                {
-                    b.Navigation("User")
+                    b.Navigation("UserInfo")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PayrollManagement.Business.ModuleWorker.Models.Worker", b =>
+            modelBuilder.Entity("PayrollManagement.Business.Models.Worker", b =>
                 {
                     b.Navigation("UserActivities");
 

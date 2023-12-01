@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PayrollManagement.Infraestructure.Contracts;
 using PayrollManagement.Infraestructure.Data;
 using PayrollManagement.Infraestructure.Repository;
 
@@ -18,7 +19,7 @@ namespace PayrollManagement.Infraestructure
         public static IServiceCollection AddCustomizedRepository(this IServiceCollection services)
         {
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
             return services;
         }
     }
