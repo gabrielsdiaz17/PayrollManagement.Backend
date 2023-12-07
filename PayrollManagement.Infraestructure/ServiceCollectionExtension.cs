@@ -20,6 +20,12 @@ namespace PayrollManagement.Infraestructure
         {
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IWorkerRepository, WorkerRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICostCenterRepository, CostCenterRepository>();
+            services.AddTransient<IUserActivityRepository, UserActivityRepository >();
+
+
             return services;
         }
     }

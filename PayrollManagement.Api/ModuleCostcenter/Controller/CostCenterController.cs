@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PayrollManagement.Api.ModuleCostcenter.Interfaces;
 using PayrollManagement.Api.ModuleCostcenter.ViewModel;
 using PayrollManagement.Business.Models;
+using PayrollManagement.Infraestructure.Contracts;
 
 namespace PayrollManagement.Api.ModuleCostcenter.Controller
 {
@@ -14,11 +15,13 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
         private readonly ICostCenterService _costCenterService;
         private ILogger<CostCenterController> _logger;
         private readonly IMapper _mapper;
-        public CostCenterController(ICostCenterService costCenterService, IMapper mapper, ILogger<CostCenterController> logger)
+        private readonly ICostCenterRepository _costCenterRepository;
+        public CostCenterController(ICostCenterService costCenterService, IMapper mapper, ILogger<CostCenterController> logger, ICostCenterRepository costCenterRepository)
         {
             _costCenterService = costCenterService;
             _mapper = mapper;
             _logger = logger;
+            _costCenterRepository = costCenterRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CostCenterViewModel newCostCenterVM)
@@ -44,9 +47,13 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
         {
             try
             {
-                var query = await _costCenterService.GetAllAsync();
-                var costCenters = _mapper.Map<List<CostCenterViewModel>>(query);
-                return Ok(costCenters);
+                var query = await _costCenterRepository.GetCostCenterWithUser();
+                if (query.Any())
+                {
+                    var costCenters = _mapper.Map<List<CostCenterQueryViewModel>>(query);
+                    return Ok(costCenters);
+                }
+                return NotFound();
             }
             catch(Exception ex)
             {
@@ -97,9 +104,14 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
         {
             try
             {
-                var query = await _costCenterService.GetAllAsync();
-                var costCenters = query.Where(costCenter => costCenter.UserId == id).ToList();
-                return Ok(costCenters);
+                var query = await _costCenterRepository.GetCostCenterWithUser();
+                if (query.Any())
+                {
+                    var costCenters = _mapper.Map<List<CostCenter>>(query);
+                    costCenters = query.Where(costCenter => costCenter.UserId == id).ToList();
+                    return Ok(costCenters);
+                }
+                return BadRequest();
             }
             catch (Exception ex)
             {

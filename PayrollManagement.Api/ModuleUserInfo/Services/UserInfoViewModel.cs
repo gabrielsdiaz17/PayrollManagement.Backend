@@ -18,6 +18,9 @@ namespace PayrollManagement.Api.ModuleUserInfo.Services
         public string Address { get; set; }
         public long CityId { get; set; }
         public long? WorkerId { get; set; }
+        public TimeSpan EntryHour { get; set; }
+        public TimeSpan ExitHour { get; set; }
 
     }
+
 }

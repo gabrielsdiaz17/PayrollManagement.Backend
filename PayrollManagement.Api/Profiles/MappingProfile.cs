@@ -8,6 +8,7 @@ using PayrollManagement.Api.ModuleUserActivity.ViewModel;
 using PayrollManagement.Api.ModuleUserInfo.Services;
 using PayrollManagement.Api.ModuleWorker.ViewModels;
 using PayrollManagement.Business.Models;
+using PayrollManagement.Infraestructure.HelperModels;
 
 namespace PayrollManagement.Api.Profiles
 {
@@ -74,7 +75,8 @@ namespace PayrollManagement.Api.Profiles
         public WorkerUserInfoMappingProfile()
         {
             CreateMap<Worker, WorkerQueryViewModel>()
-                .ForMember(dest => dest.UserInfo, opt => opt.MapFrom(src => src.UserInfo));
+                .ForMember(dest => dest.UserInfo, opt => opt.MapFrom(src => src.UserInfo))
+                .ForMember(dest => dest.CostCenter, opt => opt.MapFrom(src => src.CostCenter));
         }
     }
     public class UserActivityMappingProfile : Profile
@@ -82,6 +84,49 @@ namespace PayrollManagement.Api.Profiles
         public UserActivityMappingProfile()
         {
             CreateMap<UserActivity, UserActivityViewModel>().ReverseMap();
+        }
+    }
+
+    public class WorkerUserActivityMappingProfile : Profile
+    {
+        public WorkerUserActivityMappingProfile()
+        {
+            CreateMap<Worker, WorkerQueryUserActivity>()
+                .ForMember(dest => dest.UserActivities, opt => opt.MapFrom(src => src.UserActivities));
+        }
+    }
+    public class UserUserInfoMappingProfile : Profile
+    {
+        public UserUserInfoMappingProfile()
+        {
+            CreateMap<User, UserQueryViewModel>()
+                .ForMember(dest => dest.UserInfo, opt => opt.MapFrom(src => src.UserInfo))
+                .ForMember(dest => dest.CostCenter, opt => opt.MapFrom(src => src.CostCenter));
+        }
+    }
+
+    public class CostCenterQueryMappingProfile : Profile
+    {
+        public CostCenterQueryMappingProfile()
+        {
+            CreateMap<CostCenter, CostCenterQueryViewModel>().
+                ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User)) ;
+        }
+    }
+    public class LoginMappingProfile : Profile
+    {
+        public LoginMappingProfile()
+        {
+            CreateMap<UserLogin , UserLoginViewModel>().ReverseMap();
+        }
+    }
+    public class UserActivityWorkerUserInfoMappingProfile : Profile
+    {
+        public UserActivityWorkerUserInfoMappingProfile()
+        {
+            CreateMap<UserActivity, UserActivityViewModelDetails>()
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
+                .ForMember(dest => dest.Worker, opt => opt.MapFrom(src => src.Worker));
         }
     }
 

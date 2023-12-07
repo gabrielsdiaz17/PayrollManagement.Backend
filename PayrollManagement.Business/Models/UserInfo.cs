@@ -24,5 +24,7 @@ namespace PayrollManagement.Business.Models
         //[ForeignKey("Worker")]
         public long? WorkerId { get; set; }
         public Worker Worker { get; set; }
+        public TimeSpan EntryHour { get; set; }
+        public TimeSpan ExitHour { get; set; }
     }
 }

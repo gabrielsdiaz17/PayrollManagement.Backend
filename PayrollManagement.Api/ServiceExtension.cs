@@ -18,6 +18,7 @@ using AutoMapper;
 using PayrollManagement.Api.Profiles;
 using PayrollManagement.Api.ModuleUser.Interfaces;
 using PayrollManagement.Api.ModuleUser.Services;
+using PayrollManagement.Api.ModuleUserActivity.ViewModel;
 
 namespace PayrollManagement.Api
 {
@@ -47,6 +48,11 @@ namespace PayrollManagement.Api
             services.AddAutoMapper(typeof(WorkerMappingProfile));
             services.AddAutoMapper(typeof(UserActivityMappingProfile));
             services.AddAutoMapper(typeof(WorkerUserInfoMappingProfile));
+            services.AddAutoMapper(typeof(WorkerUserActivityMappingProfile));
+            services.AddAutoMapper(typeof(UserUserInfoMappingProfile));
+            services.AddAutoMapper(typeof(CostCenterQueryMappingProfile));
+            services.AddAutoMapper(typeof(LoginMappingProfile));
+            services.AddAutoMapper(typeof(UserActivityWorkerUserInfoMappingProfile));
 
 
 

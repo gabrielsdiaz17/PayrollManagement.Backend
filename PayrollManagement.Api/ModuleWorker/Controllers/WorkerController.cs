@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PayrollManagement.Api.ModuleWorker.Interfaces;
 using PayrollManagement.Api.ModuleWorker.ViewModels;
 using PayrollManagement.Business.Models;
+using PayrollManagement.Infraestructure.Contracts;
 
 namespace PayrollManagement.Api.ModuleWorker.Controllers
 {
@@ -14,11 +15,13 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
         private readonly IWorkerService _workerService;
         public ILogger<WorkerController> _loggger;
         private readonly IMapper _mapper;
-        public WorkerController(IWorkerService workerService, ILogger<WorkerController> logger, IMapper mapper)
+        private readonly IWorkerRepository _workerRepository; 
+        public WorkerController(IWorkerService workerService, ILogger<WorkerController> logger, IMapper mapper, IWorkerRepository workerRepository)
         {
             _workerService = workerService;
             _loggger = logger;
             _mapper = mapper;
+            _workerRepository = workerRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] WorkerViewModel newWorkerVM)
@@ -44,9 +47,13 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
         {
             try 
             {
-                var query = await _workerService.GetAllAsync();
-                var workers = _mapper.Map<List<WorkerQueryViewModel>>(query);
-                return Ok(workers);
+                var query = await _workerRepository.GetWorkerWithUserInfo();
+                if (query.Any())
+                {
+                    var workers = _mapper.Map<List<WorkerQueryViewModel>>(query);
+                    return Ok(workers);
+                }
+                return NotFound();
 
             }
             catch(Exception ex) 
@@ -54,15 +61,19 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
                 return StatusCode(500, new { message = ex.Message.ToString() });
             }
         }
-        [HttpGet("workerById/{id}")]
+        [HttpGet("userActivityByWorker/{id}")]
 
-        public async Task<IActionResult> WorkerById(int id)
+        public async Task<IActionResult> WorkerById(long id)
         {
             try
             {
-                var query = await _workerService.GetByIdAsync(id);
-                var worker = _mapper.Map<WorkerQueryViewModel>(query);
-                return Ok(worker);
+                var query = await _workerRepository.GetUserActivityByWorker(id);
+                if (query.Any())
+                {
+                    var worker = _mapper.Map<WorkerQueryViewModel>(query);
+                    return Ok(worker);
+                }
+                return NotFound();
 
             }
             catch (Exception ex)
