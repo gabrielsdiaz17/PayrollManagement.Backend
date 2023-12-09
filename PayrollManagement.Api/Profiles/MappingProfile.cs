@@ -101,7 +101,8 @@ namespace PayrollManagement.Api.Profiles
         {
             CreateMap<User, UserQueryViewModel>()
                 .ForMember(dest => dest.UserInfo, opt => opt.MapFrom(src => src.UserInfo))
-                .ForMember(dest => dest.CostCenter, opt => opt.MapFrom(src => src.CostCenter));
+                .ForMember(dest => dest.CostCenter, opt => opt.MapFrom(src => src.CostCenter))
+                .ForMember(dest => dest.Role, opt=> opt.MapFrom(src => src.Role));
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using PayrollManagement.Api.ModuleCostcenter.ViewModel;
+using PayrollManagement.Api.ModuleRole.ViewModel;
 using PayrollManagement.Api.ModuleUserInfo.Services;
 using PayrollManagement.Business.Models;
 
@@ -19,6 +20,7 @@ namespace PayrollManagement.Api.ModuleUser.ViewModel
     {
         public UserInfoViewModel UserInfo { get; set; }
         public CostCenterViewModel CostCenter { get; set; }
+        public RoleViewModel Role { get; set; }
     }
     public class UserLoginViewModel
     {

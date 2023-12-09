@@ -20,6 +20,9 @@ namespace PayrollManagement.Infraestructure.Repository
         public async Task<User> GetUserLogin(UserLogin login)
         {
             var user = await _dbContext.User.Where(us=> us.Name == login.Name && us.Password == login.Password)
+                .Include(us => us.UserInfo)
+                .Include(us => us.CostCenter)
+                .Include(us => us.Role)
                 .FirstOrDefaultAsync();
             return user;
         }
