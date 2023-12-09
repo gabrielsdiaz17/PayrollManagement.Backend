@@ -29,7 +29,9 @@ namespace PayrollManagement.Api.ModuleCity.Controllers
                 {
                     var city = _mapper.Map<City>(newCity);
                     await _cityService.AddAsync(city);
-                    return Ok();
+                    var cityId = city.Id;
+
+                    return Ok(new { Id = cityId});
                 }
                 return BadRequest();
 

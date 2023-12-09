@@ -13,7 +13,7 @@ namespace PayrollManagement.Api.ModuleUserInfo.Services
         public string UserEmail { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime EntryDate { get; set; }
-        public int PhoneNumber { get; set; }
+        public long PhoneNumber { get; set; }
         public Genre Genre { get; set; }
         public string Address { get; set; }
         public long CityId { get; set; }

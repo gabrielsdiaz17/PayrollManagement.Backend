@@ -26,7 +26,8 @@ namespace PayrollManagement.Api.ModuleRegion.Controllers
                 if(ModelState.IsValid)
                 {
                     await _regionService.AddAsync(newRegion);
-                    return Ok();
+                    var regionId = newRegion.Id;
+                    return Ok(new { Id = regionId });
                 }
                 return BadRequest();
 

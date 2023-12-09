@@ -32,6 +32,7 @@ namespace PayrollManagement.Infraestructure.Repository
             var usersWithUserInfo = await _dbContext.User
                 .Include(us => us.UserInfo)
                 .Include(us=>us.CostCenter)
+                .Include(us => us.Role)
                 .ToListAsync();
             return usersWithUserInfo;
         }

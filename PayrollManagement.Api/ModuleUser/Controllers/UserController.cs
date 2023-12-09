@@ -33,7 +33,8 @@ namespace PayrollManagement.Api.ModuleUser.Controllers
                 {
                     var user = _mapper.Map<User>(newUser);
                     await _userService.AddAsync(user);
-                    return Ok();
+                    var userId = user.Id;
+                    return Ok( new { Id = userId } );
                 }
                 return BadRequest();
             }

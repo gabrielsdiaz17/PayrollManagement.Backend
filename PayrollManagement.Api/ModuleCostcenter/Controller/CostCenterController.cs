@@ -32,7 +32,8 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
                 {
                     var costCenter = _mapper.Map<CostCenter>(newCostCenterVM);
                     await _costCenterService.AddAsync(costCenter);
-                    return Ok();
+                    var costCenterId = costCenter.Id;
+                    return Ok(new { Id = costCenterId});
 
                 }
                 return BadRequest();

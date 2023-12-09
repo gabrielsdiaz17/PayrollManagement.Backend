@@ -1,4 +1,5 @@
-﻿using PayrollManagement.Business.Models;
+﻿using PayrollManagement.Api.ModuleUser.ViewModel;
+using PayrollManagement.Business.Models;
 
 namespace PayrollManagement.Api.ModuleCostcenter.ViewModel
 {
@@ -10,6 +11,6 @@ namespace PayrollManagement.Api.ModuleCostcenter.ViewModel
     }
     public class  CostCenterQueryViewModel: CostCenterViewModel
     {
-        public User User { get; set; }
+        public UserViewModel User { get; set; }
     }
 }
