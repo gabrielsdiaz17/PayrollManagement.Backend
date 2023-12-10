@@ -32,7 +32,8 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
                 {
                     var worker = _mapper.Map<Worker>(newWorkerVM);
                     await _workerService.AddAsync(worker);
-                    return Ok();
+                    var workerId = worker.Id;
+                    return Ok(new { Id = workerId });
 
                 }
                 return BadRequest();
@@ -53,7 +54,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
                     var workers = _mapper.Map<List<WorkerQueryViewModel>>(query);
                     return Ok(workers);
                 }
-                return NotFound();
+                return Ok();
 
             }
             catch(Exception ex) 

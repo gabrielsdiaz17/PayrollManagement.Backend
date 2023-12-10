@@ -86,7 +86,7 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
                     var userActivities = _mapper.Map<List<UserActivityViewModelDetails>>(query);
                     return Ok(userActivities);
                 }
-                return NotFound();
+                return Ok();
             }
             catch(Exception ex)
             {
