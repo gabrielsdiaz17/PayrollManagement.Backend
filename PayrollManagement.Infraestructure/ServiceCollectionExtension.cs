@@ -19,13 +19,6 @@ namespace PayrollManagement.Infraestructure
         public static IServiceCollection AddCustomizedRepository(this IServiceCollection services)
         {
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<ICompanyRepository, CompanyRepository>();
-            services.AddTransient<IWorkerRepository, WorkerRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ICostCenterRepository, CostCenterRepository>();
-            services.AddTransient<IUserActivityRepository, UserActivityRepository >();
-
-
             return services;
         }
     }

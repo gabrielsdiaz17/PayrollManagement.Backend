@@ -16,13 +16,11 @@ namespace PayrollManagement.Api.ModuleUser.Controllers
         private readonly IUserService _userService;
         private ILogger<UserController> _logger;
         private readonly IMapper _mapper;
-         private readonly IUserRepository _userRepository;
-        public UserController(IUserService userService, ILogger<UserController> logger, IMapper mapper, IUserRepository userRepository)
+        public UserController(IUserService userService, ILogger<UserController> logger, IMapper mapper)
         {
             _userService = userService;
             _logger = logger;
             _mapper = mapper;
-            _userRepository = userRepository;
         }
         [HttpPost]
         public async Task <IActionResult> Create([FromBody] UserViewModel newUser)
@@ -48,7 +46,7 @@ namespace PayrollManagement.Api.ModuleUser.Controllers
         {
             try
             {
-                var query = await _userRepository.GetUserWithUserInfo();
+                var query = await _userService.GetUserWithUserInfo();
                 if (query.Any())
                 {
                     var users = _mapper.Map<List<UserQueryViewModel>>(query);
@@ -104,7 +102,7 @@ namespace PayrollManagement.Api.ModuleUser.Controllers
             try
             {
                 var user = _mapper.Map<UserLogin>(userLogin);
-                var query = await _userRepository.GetUserLogin(user);
+                var query = await _userService.GetUserLogin(user);
                 if (query != null)
                 {
                     var loginUser = _mapper.Map<UserQueryViewModel>(query);

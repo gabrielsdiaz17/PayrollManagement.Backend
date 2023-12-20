@@ -15,13 +15,11 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
         private readonly IWorkerService _workerService;
         public ILogger<WorkerController> _loggger;
         private readonly IMapper _mapper;
-        private readonly IWorkerRepository _workerRepository; 
-        public WorkerController(IWorkerService workerService, ILogger<WorkerController> logger, IMapper mapper, IWorkerRepository workerRepository)
+        public WorkerController(IWorkerService workerService, ILogger<WorkerController> logger, IMapper mapper)
         {
             _workerService = workerService;
             _loggger = logger;
             _mapper = mapper;
-            _workerRepository = workerRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] WorkerViewModel newWorkerVM)
@@ -48,7 +46,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
         {
             try 
             {
-                var query = await _workerRepository.GetWorkerWithUserInfo();
+                var query = await _workerService.GetWorkerWithUserInfo();
                 if (query.Any())
                 {
                     var workers = _mapper.Map<List<WorkerQueryViewModel>>(query);
@@ -68,7 +66,7 @@ namespace PayrollManagement.Api.ModuleWorker.Controllers
         {
             try
             {
-                var query = await _workerRepository.GetUserActivityByWorker(id);
+                var query = await _workerService.GetUserActivityByWorker(id);
                 if (query.Any())
                 {
                     var worker = _mapper.Map<WorkerQueryViewModel>(query);

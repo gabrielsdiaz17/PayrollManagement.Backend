@@ -15,13 +15,11 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
         private readonly ICostCenterService _costCenterService;
         private ILogger<CostCenterController> _logger;
         private readonly IMapper _mapper;
-        private readonly ICostCenterRepository _costCenterRepository;
-        public CostCenterController(ICostCenterService costCenterService, IMapper mapper, ILogger<CostCenterController> logger, ICostCenterRepository costCenterRepository)
+        public CostCenterController(ICostCenterService costCenterService, IMapper mapper, ILogger<CostCenterController> logger)
         {
             _costCenterService = costCenterService;
             _mapper = mapper;
             _logger = logger;
-            _costCenterRepository = costCenterRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CostCenterViewModel newCostCenterVM)
@@ -48,7 +46,7 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
         {
             try
             {
-                var query = await _costCenterRepository.GetCostCenterWithUser();
+                var query = await _costCenterService.GetCostCenterWithUser();
                 if (query.Any())
                 {
                     var costCenters = _mapper.Map<List<CostCenterQueryViewModel>>(query);
@@ -105,7 +103,7 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
         {
             try
             {
-                var query = await _costCenterRepository.GetCostCenterWithUser();
+                var query = await _costCenterService.GetCostCenterWithUser();
                 if (query.Any())
                 {
                     var costCenters = _mapper.Map<List<CostCenter>>(query);

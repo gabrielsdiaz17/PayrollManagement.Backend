@@ -16,13 +16,11 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
         private readonly IUserActivityService _userActivityService;
         private ILogger<UserActivityController> _logger;
         private readonly IMapper _mapper;
-        private readonly IUserActivityRepository _userActivityRepository;
-        public UserActivityController(IUserActivityService userActivityService, ILogger<UserActivityController> logger, IMapper mapper, IUserActivityRepository userActivityRepository)
+        public UserActivityController(IUserActivityService userActivityService, ILogger<UserActivityController> logger, IMapper mapper )
         {
             _userActivityService = userActivityService;
             _logger = logger;
             _mapper = mapper;
-            _userActivityRepository = userActivityRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UserActivityViewModel newUserActivity)
@@ -62,7 +60,7 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
         {
             try
             {
-                var query = await _userActivityRepository.GetActivityByDateAndUser(userFilter);
+                var query = await _userActivityService.GetActivityByDateAndUser(userFilter);
                 if (query.Any())
                 {
                     var activitiesWorker = _mapper.Map<List<UserActivityViewModelDetails>>(query);
@@ -80,7 +78,7 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
         {
             try
             {
-                var query = await _userActivityRepository.GetAcitivityByDates(filter);
+                var query = await _userActivityService.GetAcitivityByDates(filter);
                 if (query.Any())
                 {
                     var userActivities = _mapper.Map<List<UserActivityViewModelDetails>>(query);
