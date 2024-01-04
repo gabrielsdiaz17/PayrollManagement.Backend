@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PayrollManagement.Infraestructure.Contracts;
 using PayrollManagement.Infraestructure.Data;
 using PayrollManagement.Infraestructure.Repository;
 

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using PayrollManagement.Api.ModuleUser.Interfaces;
 using PayrollManagement.Api.ModuleUser.ViewModel;
 using PayrollManagement.Business.Models;
-using PayrollManagement.Infraestructure.Contracts;
 using PayrollManagement.Infraestructure.HelperModels;
 
 namespace PayrollManagement.Api.ModuleUser.Controllers

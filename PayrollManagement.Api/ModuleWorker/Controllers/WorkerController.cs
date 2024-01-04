@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PayrollManagement.Api.ModuleWorker.Interfaces;
 using PayrollManagement.Api.ModuleWorker.ViewModels;
 using PayrollManagement.Business.Models;
-using PayrollManagement.Infraestructure.Contracts;
+
 
 namespace PayrollManagement.Api.ModuleWorker.Controllers
 {
