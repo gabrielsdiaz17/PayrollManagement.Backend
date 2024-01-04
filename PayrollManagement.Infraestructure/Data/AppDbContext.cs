@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PayrollManagement.Business.ModuleCity.Models;
 using PayrollManagement.Business.ModuleCompany.Models;
 using PayrollManagement.Business.ModuleCostCenter.Models;
@@ -17,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace PayrollManagement.Infraestructure.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User,Role,long>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

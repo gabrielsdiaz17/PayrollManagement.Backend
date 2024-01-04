@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Identity;
+using PayrollManagement.Business.ModuleRole.Models;
+using PayrollManagement.Business.ModuleUser.Models;
 using PayrollManagement.Infraestructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,11 +11,21 @@ IConfiguration configuration = new ConfigurationBuilder()
             .Build();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
+//.AddDefaultTokenProviders(); // Agregar proveedores de tokens por defecto
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCustomaizedDataStore(configuration);
 builder.Services.AddCustomizedRepository();
+
+builder.Services.AddIdentity<User, Role>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 8;
+
+}).AddDefaultTokenProviders();
+
 
 var app = builder.Build();
 
