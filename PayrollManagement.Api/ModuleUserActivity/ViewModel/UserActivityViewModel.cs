@@ -16,7 +16,7 @@ namespace PayrollManagement.Api.ModuleUserActivity.ViewModel
     }
     public class UserActivityViewModelDetails: UserActivityViewModel
     {
-        public UserViewModel User { get; set; }
+        public UserQueryViewModel User { get; set; }
         public WorkerViewModel Worker { get; set; }
     }
 }

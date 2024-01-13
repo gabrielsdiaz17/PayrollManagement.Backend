@@ -22,14 +22,17 @@ namespace PayrollManagement.Api.ModuleUserActivity.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] UserActivityViewModel newUserActivity)
+        public async Task<IActionResult> Create([FromBody] List<UserActivityViewModel> newUserActivities)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
-                    var userActivity = _mapper.Map<UserActivity>(newUserActivity);
-                    await _userActivityService.AddAsync(userActivity);
+                    foreach (var newUserActivity in newUserActivities)
+                    {
+                        var userActivity = _mapper.Map<UserActivity>(newUserActivity);
+                        await _userActivityService.AddAsync(userActivity);
+                    }                    
                     return Ok();
                 }
                 return BadRequest();

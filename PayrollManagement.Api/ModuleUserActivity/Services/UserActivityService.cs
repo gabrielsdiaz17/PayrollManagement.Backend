@@ -16,6 +16,7 @@ namespace PayrollManagement.Api.ModuleUserActivity.Services
             var userActivityBetweenDates = await QueryNoTracking()
                 .Where(ac => ac.DateActivity >= filter.StartDate && ac.DateActivity <= filter.EndDate)
                 .Include(us => us.User)
+                .Include(us => us.User.UserInfo)
                 .Include(w => w.Worker)
                 .ToListAsync();
             return userActivityBetweenDates;
