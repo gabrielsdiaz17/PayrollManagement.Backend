@@ -5,5 +5,6 @@ namespace PayrollManagement.Api.ModuleCompany.Interfaces
 {
     public interface ICompanyService:IRepository<Company>
     {
+        Task<List<Company>> GetCompaniesWithCities();
     }
 }

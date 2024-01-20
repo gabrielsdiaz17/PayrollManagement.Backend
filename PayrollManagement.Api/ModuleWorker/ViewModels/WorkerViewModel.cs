@@ -1,4 +1,7 @@
-﻿using PayrollManagement.Business.Models;
+﻿using PayrollManagement.Api.ModuleCostcenter.ViewModel;
+using PayrollManagement.Api.ModuleUserActivity.ViewModel;
+using PayrollManagement.Api.ModuleUserInfo.Services;
+using PayrollManagement.Business.Models;
 
 namespace PayrollManagement.Api.ModuleWorker.ViewModels
 {
@@ -11,6 +14,12 @@ namespace PayrollManagement.Api.ModuleWorker.ViewModels
     }
     public class WorkerQueryViewModel:WorkerViewModel
     {
-        public UserInfo UserInfo { get; set; }
+        public UserInfoViewModel UserInfo { get; set; }
+        public CostCenterViewModel CostCenter { get; set; }
     }
+    public class WorkerQueryUserActivity: WorkerViewModel
+    {
+        public virtual List<UserActivityViewModel> UserActivities { get; set; }
+    }
+
 }

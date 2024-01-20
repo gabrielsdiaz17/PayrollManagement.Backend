@@ -5,5 +5,7 @@ namespace PayrollManagement.Api.ModuleCostcenter.Interfaces
 {
     public interface ICostCenterService:IRepository<CostCenter>
     {
+        Task<List<CostCenter>> GetCostCenterWithUser();
+
     }
 }

@@ -29,7 +29,8 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
                 {
                     var costCenter = _mapper.Map<CostCenter>(newCostCenterVM);
                     await _costCenterService.AddAsync(costCenter);
-                    return Ok();
+                    var costCenterId = costCenter.Id;
+                    return Ok(new { Id = costCenterId});
 
                 }
                 return BadRequest();
@@ -44,9 +45,13 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
         {
             try
             {
-                var query = await _costCenterService.GetAllAsync();
-                var costCenters = _mapper.Map<List<CostCenterViewModel>>(query);
-                return Ok(costCenters);
+                var query = await _costCenterService.GetCostCenterWithUser();
+                if (query.Any())
+                {
+                    var costCenters = _mapper.Map<List<CostCenterQueryViewModel>>(query);
+                    return Ok(costCenters);
+                }
+                return NotFound();
             }
             catch(Exception ex)
             {
@@ -97,9 +102,14 @@ namespace PayrollManagement.Api.ModuleCostcenter.Controller
         {
             try
             {
-                var query = await _costCenterService.GetAllAsync();
-                var costCenters = query.Where(costCenter => costCenter.UserId == id).ToList();
-                return Ok(costCenters);
+                var query = await _costCenterService.GetCostCenterWithUser();
+                if (query.Any())
+                {
+                    var costCenters = _mapper.Map<List<CostCenter>>(query);
+                    costCenters = query.Where(costCenter => costCenter.UserId == id).ToList();
+                    return Ok(costCenters);
+                }
+                return BadRequest();
             }
             catch (Exception ex)
             {

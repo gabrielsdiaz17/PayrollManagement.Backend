@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PayrollManagement.Api.ModuleUser.Interfaces;
 using PayrollManagement.Api.ModuleUser.ViewModel;
 using PayrollManagement.Business.Models;
+using PayrollManagement.Infraestructure.HelperModels;
 
 namespace PayrollManagement.Api.ModuleUser.Controllers
 {
@@ -29,7 +30,8 @@ namespace PayrollManagement.Api.ModuleUser.Controllers
                 {
                     var user = _mapper.Map<User>(newUser);
                     await _userService.AddAsync(user);
-                    return Ok();
+                    var userId = user.Id;
+                    return Ok( new { Id = userId } );
                 }
                 return BadRequest();
             }
@@ -43,9 +45,14 @@ namespace PayrollManagement.Api.ModuleUser.Controllers
         {
             try
             {
-                var query = await _userService.GetAllAsync();
-                var users = _mapper.Map<List<User>>(query);
-                return Ok(users);
+                var query = await _userService.GetUserWithUserInfo();
+                if (query.Any())
+                {
+                    var users = _mapper.Map<List<UserQueryViewModel>>(query);
+                    return Ok(users);
+                }
+                return NotFound();
+                
             }
             catch (Exception ex)
             {
@@ -82,6 +89,26 @@ namespace PayrollManagement.Api.ModuleUser.Controllers
                 user.IsDeleted = false;
                 await _userService.UpdateAsync(user);
                 return Accepted();
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message.ToString() });
+            }
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UserLoginViewModel userLogin)
+        {
+            try
+            {
+                var user = _mapper.Map<UserLogin>(userLogin);
+                var query = await _userService.GetUserLogin(user);
+                if (query != null)
+                {
+                    var loginUser = _mapper.Map<UserQueryViewModel>(query);
+                    return Ok(loginUser);
+                }
+                
+                return NotFound();
             }
             catch(Exception ex)
             {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PayrollManagement.Infraestructure.Data;
@@ -11,9 +12,11 @@ using PayrollManagement.Infraestructure.Data;
 namespace PayrollManagement.Infraestructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231207000031_AddTimespans")]
+    partial class AddTimespans
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -396,8 +399,8 @@ namespace PayrollManagement.Infraestructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("PhoneNumber")
-                        .HasColumnType("bigint");
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("integer");
 
                     b.Property<long?>("UpdatedById")
                         .HasColumnType("bigint");
