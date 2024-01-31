@@ -6,7 +6,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["PayrollManagement.Api.csproj", "."]
+COPY ["../PayrollManagement.Api/PayrollManagement.Api.csproj", "."]
 RUN dotnet restore "./PayrollManagement.Api.csproj"
 COPY . .
 WORKDIR "/src/."
